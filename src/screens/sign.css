@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+
+/* Reset padrão */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'DM Sans', 'Arial', sans-serif;
+}
+
+/* Estilização geral */
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+}
+/* Container principal */
+.container {
+  width: 450px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  background: url('../img/backgroundImageLoginScreen.svg') no-repeat center center/cover;
+  background-size: cover;
+}
+
+.container .top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-self: normal;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  margin-top: 10px;
+}
+
+.top .icons-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70px;
+  margin: 0 35px;
+}
+
+.top h1 {
+  color: white;
+  font-size: 15px;
+  font-weight: 550;
+}
+
+/* Estilização do card
+.card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+} */
+
+/* Título */
+.sign h1 {
+  text-align: center;
+  font-size: 51px;
+  font-weight: 600;
+  line-height: 66px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+/* Subtítulo */
+.sign p {
+  color: #e6e5e5;
+  margin-bottom: 150px;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Inputs */
+.input-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 150%;
+  margin: 0 -25%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+/* Botão de login */
+.login-btn {
+  width: 100%;
+  background: #00b34f;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #009440;
+}
+
+/* Link "Forgot Password" */
+.forgot-password {
+  display: flex;
+  justify-content: center;
+  margin: -5px 0 20px 0;
+}
+.forgot-password a{
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Botão Google */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.google-btn img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+/* Link de cadastro */
+.signup {
+  margin-top: 15px;
+  color: white;
+}
+
+.signup a {
+  color: #00b34f;
+  text-decoration: none;
+}
+
+.signup a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
