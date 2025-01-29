@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../components/validaLogin'; // Importa a função de login
-import './sign.css';
+import { loginWithGoogle } from '../components/validaLogin';
+import '../css/sign.css';
 
 import redeImg from '../img/rede.png';
 import wifiImg from '../img/wifi.png';
@@ -13,15 +14,27 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Função dedicada ao login
+  // Função para login
   const handleLogin = async () => {
-    const result = await login(email, password); // Usa a função do validaLogin.tsx
+    const result = await login(email, password);
     
     if (result.success) {
       alert(result.message);
-      navigate('/dashboard'); // Redireciona após login bem-sucedido
+      navigate('/home'); 
     } else {
-      alert(result.message); // Mostra mensagem de erro
+      alert(result.message);
+    }
+  };
+
+  // Função de login com Google
+  const handleGoogleLogin = async () => {
+    const result = await loginWithGoogle();
+    
+    if (result.success) {
+      alert(result.message);
+      navigate('/home');
+    } else {
+      alert(result.message);
     }
   };
 
@@ -62,17 +75,19 @@ const Login = () => {
         </div>
         
         <button className="login-btn" onClick={handleLogin}>
-          Sign In {/* Texto fixo para login */}
+          Sign In 
         </button>
 
-        <div className="google-btn">
+        <div className="google-btn" onClick={handleGoogleLogin} style={{ cursor: "pointer" }}>
           <img src={googleImg} alt="Google Logo" />
           Sign in with Google
         </div>
 
-        <p className="signup"> Didn’t have any account? 
-          <a href='/cadastro'> Sign Up here</a>
-        </p>
+        <div className="signup">
+          <p> Didn’t have any account? 
+            <a href='/cadastro'> Sign Up here</a>
+          </p>
+        </div>
       </div>
     </div>
   );

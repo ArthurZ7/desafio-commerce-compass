@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../components/validaLogin'; // Importa a função de cadastro
-import './sign.css';
+import { cadastro } from '../components/validaLogin';
+import { loginWithGoogle } from '../components/validaLogin';
 
-// Imagens
-import redeImg from './assets/rede.png';
-import wifiImg from './assets/wifi.png';
-import batteryImg from './assets/battery.png';
-import googleImg from './assets/google-icon.png';
+import '../css/sign.css';
 
-const SignUp = () => {
+import redeImg from '../img/rede.png';
+import wifiImg from '../img/wifi.png';
+import batteryImg from '../img/battery.png';
+import googleImg from '../img/google-icon.png';
+
+const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   // Função dedicada ao cadastro
   const handleSignUp = async () => {
-    const result = await signUp(email, password);
+    const result = await cadastro(email, password);
     
     if (result.success) {
       alert(result.message);
-      navigate('/login'); // Redireciona para login após cadastro
+      navigate('/'); 
     } else {
       alert(result.message);
     }
   };
+
+    // Função de login com Google
+    const handleGoogleLogin = async () => {
+      const result = await loginWithGoogle();
+      
+      if (result.success) {
+        alert(result.message);
+        navigate('/home');
+      } else {
+        alert(result.message);
+      }
+    };
 
   return (
     <div className="container">
@@ -59,12 +72,12 @@ const SignUp = () => {
         </div>
         
         <button className="login-btn" onClick={handleSignUp}>
-          Sign Up {/* Botão de cadastro */}
+          Sign Up
         </button>
 
-        <div className="google-btn">
+        <div className="google-btn" onClick={handleGoogleLogin} style={{ cursor: "pointer" }}>
           <img src={googleImg} alt="Google Logo" />
-          Sign up with Google
+          Sign in with Google
         </div>
 
         <p className="signup">
@@ -75,4 +88,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Cadastro;

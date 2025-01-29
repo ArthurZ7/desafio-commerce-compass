@@ -1,4 +1,5 @@
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import { db } from "../firebaseConfig"; // Importe a configuração do Firebase
 
 // Interface para o usuário
@@ -8,7 +9,7 @@ interface User {
   password: string;
 }
 
-// Função para validar o formato do email
+// Função REGEX para validar o formato do email
 const validateEmail = (email: string): boolean => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
@@ -20,7 +21,7 @@ const validatePassword = (password: string): boolean => {
 };
 
 // Função para cadastrar um novo usuário
-export const signUp = async (email: string, password: string): Promise<{ success: boolean; message: string }> => {
+export const cadastro = async (email: string, password: string): Promise<{ success: boolean; message: string }> => {
   try {
     // Valida o email
     if (!validateEmail(email)) {
@@ -77,5 +78,35 @@ export const login = async (email: string, password: string): Promise<{ success:
   } catch (error) {
     console.error("Erro ao fazer login:", error);
     return { success: false, message: "Erro ao fazer login." };
+  }
+};
+
+const auth = getAuth();
+const googleProvider = new GoogleAuthProvider();
+
+// Função para login com Google
+export const loginWithGoogle = async (): Promise<{ success: boolean; message: string }> => {
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    if (!user.email) {
+      return { success: false, message: "Falha ao obter o email do usuário." };
+    }
+
+    // Verifica se o usuário já está no Firestore
+    const usersCollectionRef = collection(db, "users");
+    const q = query(usersCollectionRef, where("email", "==", user.email));
+    const querySnapshot = await getDocs(q);
+
+    // Se não estiver cadastrado, adiciona
+    if (querySnapshot.empty) {
+      await addDoc(usersCollectionRef, { email: user.email, password: "" }); // Senha vazia pois é login social
+    }
+
+    return { success: true, message: "Login com Google realizado com sucesso!" };
+  } catch (error) {
+    console.error("Erro ao fazer login com Google:", error);
+    return { success: false, message: "Erro ao autenticar com Google." };
   }
 };
