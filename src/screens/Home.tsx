@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styles from '../css/styles.module.scss';
+import styles from '../css/home.module.scss';
 import { 
     redeImg, 
     wifiImg, 

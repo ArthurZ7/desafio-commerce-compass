@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './screens/Login';
 import Cadastro from './screens/Cadastro';
 import Home from './screens/Home';
+import Search from './screens/Search';
 
 const App = () => {
   return (

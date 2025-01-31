@@ -7,3 +7,5 @@ export { default as logoImg } from '../img/audioLogo.png';
 export { default as headphoneImg } from '../img/headphone.png';
 export { default as caboImg } from '../img/cabo.png';
 export { default as googleImg } from '../img/google-icon.png';
+export { default as carrinhoImg } from '../img/carrinho.png';
+export { default as arrowImg } from '../img/arrow.png';
