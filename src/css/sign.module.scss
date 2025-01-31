@@ -38,7 +38,7 @@ body, html {
   margin: 10px -7vh;
 }
 
-.top .icons-top {
+.top .iconsTop {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -75,12 +75,12 @@ body, html {
 }
 
 /* Inputs */
-.input-group {
+.inputGroup {
   width: 100%;
   margin-bottom: 15px;
 }
 
-.input-group input {
+.inputGroup input {
   width: 150%;
   margin: 0 -25%;
   padding: 12px;
@@ -89,8 +89,9 @@ body, html {
   font-size: 16px;
 }
 
+
 /* Botão de login */
-.login-btn {
+.loginBtn {
   width: 100%;
   background: #0ACF83;
   color: white;
@@ -103,29 +104,29 @@ body, html {
   margin: 5px 0;
 }
 
-.login-btn:hover {
+.loginBtn:hover {
   background: #009440;
 }
 
 /* Link "Forgot Password" */
-.forgot-password {
+.forgotPassword {
   display: flex;
   justify-content: center;
   margin: -5px 0 40px 0;
 }
-.forgot-password a{
+.forgotPassword a{
   color: white;
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
 }
 
-.forgot-password:hover {
+.forgotPassword:hover {
   text-decoration: underline;
 }
 
 /* Botão Google */
-.google-btn {
+.googleBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,17 +138,18 @@ body, html {
   cursor: pointer;
 }
 
-.google-btn img {
+.googleBtn img {
   width: 20px;
   margin-right: 10px;
 }
 
 /* Link de cadastro */
 .signup {
-  transform: translateY(800%);
+  transform: translateY(100%);
   text-align: center;
   width: 100%;
   color: white;
+  margin-top: 250px;
 }
 
 .signup a {

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../components/validaLogin'; // Importa a função de login
-import { loginWithGoogle } from '../components/validaLogin';
-import '../css/sign.css';
+import { login, loginWithGoogle } from '../components/validaLogin';
+import styles from '../css/sign.module.scss';
 
 import redeImg from '../img/rede.png';
 import wifiImg from '../img/wifi.png';
@@ -14,7 +13,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Função para login
   const handleLogin = async () => {
     const result = await login(email, password);
     
@@ -22,11 +20,10 @@ const Login = () => {
       alert(result.message);
       navigate('/home'); 
     } else {
-      alert(result.message);
+      alert(result.message); 
     }
   };
 
-  // Função de login com Google
   const handleGoogleLogin = async () => {
     const result = await loginWithGoogle();
     
@@ -39,21 +36,21 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="top">
+    <div className={styles.container}>
+      <div className={styles.top}>
         <h1>9:41</h1>
-        <div className='icons-top'>
+        <div className={styles.iconsTop}>
           <img src={redeImg} alt="Rede" />
           <img src={wifiImg} alt="WiFi" />
           <img src={batteryImg} alt="Battery" />
         </div>
       </div>
-      <div className="sign">
+      <div className={styles.sign}>
         <h1>Audio</h1>
-        <p>It's modular and designed to last</p>
+        <p>Create your account to get started</p>
 
-        <div className="input-group">
-          <input
+        <div className={styles.inputGroup}>
+          <input className='input-email'
             type="email"
             placeholder="Email"
             value={email}
@@ -61,29 +58,30 @@ const Login = () => {
           />
         </div>
 
-        <div className="input-group">
-          <input
+        <div className={styles.inputGroup}>
+          <input className='input-senha'
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
-        <div className="forgot-password">
+        <div className={styles.forgotPassword}>
           <a href="#">Forgot Password</a>
         </div>
         
-        <button className="login-btn" onClick={handleLogin}>
-          Sign In 
+        <button className={styles.loginBtn} onClick={handleLogin}>
+          Sign In
         </button>
 
-        <div className="google-btn" onClick={handleGoogleLogin} style={{ cursor: "pointer" }}>
+
+        <div className={styles.googleBtn} onClick={handleGoogleLogin} style={{ cursor: "pointer" }}>
           <img src={googleImg} alt="Google Logo" />
           Sign in with Google
         </div>
 
-        <div className="signup">
+
+        <div className={styles.signup}>
           <p> Didn’t have any account? 
             <a href='/cadastro'> Sign Up here</a>
           </p>
