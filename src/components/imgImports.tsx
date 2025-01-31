@@ -1,0 +1,9 @@
+export { default as redeImg } from '../img/rede.png';
+export { default as wifiImg } from '../img/wifi.png';
+export { default as batteryImg } from '../img/battery.png';
+export { default as burgerMenuImg } from '../img/burgerMenuIcon.png';
+export { default as avatarImg } from '../img/avatar.png';
+export { default as logoImg } from '../img/audioLogo.png';
+export { default as headphoneImg } from '../img/headphone.png';
+export { default as caboImg } from '../img/cabo.png';
+export { default as googleImg } from '../img/google-icon.png';

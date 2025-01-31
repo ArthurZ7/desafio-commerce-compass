@@ -98,7 +98,7 @@
     padding: 0 20px;
 }
 
-.tabMenu button {
+.tabMenu input[type="button"] {
     border: none;
     background: none;
     font-size: 16px;
@@ -107,7 +107,7 @@
     cursor: pointer;
 }
 
-.tabMenu button.active {
+.tabMenu input[type="button"].active {
     color: white;
     background: #2ecc71;
     padding: 8px 16px;
@@ -115,6 +115,7 @@
 }
 
 .banner {
+    height: 200px;
     background-color: #ffffff;
     border-radius: 15px;
     padding: 15px;
@@ -123,7 +124,14 @@
     align-items: start;
     margin: 0 8px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
 
+.banner > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5%;
 }
 
 .banner img {
@@ -132,8 +140,8 @@
 }
 
 .banner h2 {
-    font-size: 25px;
-    margin: 12px 0 25px 0;
+    font-size: 28px;
+    margin: 12px 0 18px 0;
 }
 
 .banner a {

@@ -2,45 +2,55 @@ import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styles from '../css/styles.module.scss';
-
-import redeImg from '../img/rede.png';
-import wifiImg from '../img/wifi.png';
-import batteryImg from '../img/battery.png';
-import burguerMenuImg from '../img/burgerMenuIcon.png';
-import avatarImg from '../img/Avatar.png';
-import logoImg from '../img/audioLogo.png';
-import headphoneImg from '../img/headphone.png';
-import caboImg from '../img/cabo.png';
-
-interface ResponseData {
-    mensagem: string;
-}
+import { 
+    redeImg, 
+    wifiImg, 
+    batteryImg, 
+    burgerMenuImg, 
+    avatarImg, 
+    logoImg, 
+    headphoneImg, 
+    caboImg 
+} from '../components/imgImports';
+import { Product } from '../components/Product.tsx';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const Home: React.FC = () => {
-    const [, setData] = useState<ResponseData | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
+    const [data, setData] = useState<Product[]>([]);
+    const [filteredData, setFilteredData] = useState<Product[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string>("headphones");
+    const [userName, setUserName] = useState<string | null>(null);
 
+    // Função para verificar se o usuário está logado
     useEffect(() => {
-        fetch("https://run.mocky.io/v3/f9a642eb-e063-4578-bab5-deaf3ca638a2")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Erro ao buscar os dados");
-                }
-                return response.json();
-            })
-            .then((data: ResponseData) => {
-                setData(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error.message);
-                setLoading(false);
-            });
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserName(user.displayName || "Usuário");
+            } else {
+                setUserName(null);
+            }
+        });
+
+        return () => unsubscribe();
     }, []);
 
-    if (loading) return <p>Carregando...</p>;
-    if (error) return <p>Erro: {error}</p>;
+    // Função para buscar os produtos
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933");
+            const data = await response.json();
+            setData(data);
+            const initialFilteredData = data.filter((item: Product) => item.category === "headphones");
+            setFilteredData(initialFilteredData);
+        };
+        fetchData();
+    }, []);
+
+    const handleFilter = (category: string) => {
+        setSelectedCategory(category);
+        setFilteredData(data.filter((item) => item.category === category));
+    };
 
     return (
         <div className={styles.container}>
@@ -53,77 +63,82 @@ const Home: React.FC = () => {
                 </div>
             </div>
             <div className={styles.menu}>
-                <img src={burguerMenuImg} alt="burguerMenuImg" style={{ width: 'auto', height: 'auto' }} />
+                <img src={burgerMenuImg} alt="burguerMenuImg" style={{ width: 'auto', height: 'auto' }} />
                 <img src={logoImg} alt="logo" />
                 <img src={avatarImg} alt="avatar"/>
             </div>
             <div className={styles.top}>
-                <p>Hi, Andrea</p>
+                <p>Hi, {userName}</p>
                 <h1>What are you looking for today?</h1>
                 <input 
                     type="text" 
                     className={styles.searchIcon}
                     placeholder="Search headphone"
+                    onClick={() => window.location.href = '/search'}
                 />
             </div>
             
             <div className={styles.products}>
                 <div className={styles.tabMenu}>
-                    <button className={styles.active}>Headphone</button>
-                    <button>Headset</button>
+                <input
+                    type="button"
+                    value="HeadPhone"
+                    className={selectedCategory === 'headphones' ? styles.active : ''}
+                    onClick={() => handleFilter("headphones")}
+                    />
+                    <input
+                    type="button"
+                    value="HeadSet"
+                    className={selectedCategory === 'headsets' ? styles.active : ''}
+                    onClick={() => handleFilter("headsets")}
+                    />
                 </div>
 
                 {/* Carrosel headphones */}
                 <Carousel 
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     rewindWithAnimation={true}
-                    partialVisible = { true }
+                    partialVisible={true}
                     responsive={{
                         desktop: {
                             breakpoint: { max: 3000, min: 1024 },
                             items: 3,
-                            partialVisibilityGutter : 30  
+                            partialVisibilityGutter: 30  
                         },
                         tablet: {
                             breakpoint: { max: 1024, min: 464 },
-                            items: 2,
-                            partialVisibilityGutter : 30  
+                            items: 1,
+                            partialVisibilityGutter: 30  
                         },
                         mobile: {
                             breakpoint: { max: 464, min: 0 },
                             items: 1,
-                            partialVisibilityGutter : 22  
+                            partialVisibilityGutter: 22  
                         }
                     }}
                 >
-                    <div className={styles.banner}>
-                        <div>
-                            <h2>TMA-2 Modular Headphone</h2>
-                            <a href="#">Shop now →</a>
+                    {filteredData.map((item) => (
+                        <div 
+                            key={item.id} 
+                            className={styles.banner}
+                        >
+                            <div>
+                                <h2>{item.name}</h2>
+                                <a href="#">Shop now →</a>
+                            </div>
+                            <div>
+                                <img src={item.img} alt={item.name} />
+                            </div>
                         </div>
-                        <img src={headphoneImg} alt="Headphone" />
-                    </div>
-                    <div className={styles.banner}>
-                        <div>
-                            <h2>TMA-2 Modular Headphone</h2>
-                            <a href="#">Shop now →</a>
-                        </div>
-                        <img src={headphoneImg} alt="Headphone" />
-                    </div>
-                    <div className={styles.banner}>
-                        <div>
-                            <h2>TMA-2 Modular Headphone</h2>
-                            <a href="#">Shop now →</a>
-                        </div>
-                        <img src={headphoneImg} alt="Headphone" />
-                    </div>
-                </Carousel >
+                    ))}
+                </Carousel>
                 
                 {/* Featured Products */}
                 <div className={styles.featuredProducts}>
                         <h3>Featured Products</h3>
                         <a href="#">See All</a>
                     </div>
+
                     <Carousel 
                         removeArrowOnDeviceType={["tablet", "mobile"]}
                         partialVisible={true}
@@ -137,7 +152,7 @@ const Home: React.FC = () => {
                             mobile: {
                                 breakpoint: { max: 464, min: 0 },
                                 items: 2,
-                                partialVisibilityGutter: 12
+                                partialVisibilityGutter: 1
                             }
                         }}
                     >

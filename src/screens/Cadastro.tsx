@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cadastro, loginWithGoogle } from '../components/validaLogin';
-
 import styles from '../css/sign.module.scss';
-
-import redeImg from '../img/rede.png';
-import wifiImg from '../img/wifi.png';
-import batteryImg from '../img/battery.png';
-import googleImg from '../img/google-icon.png';
-
+import { 
+  redeImg, 
+  wifiImg, 
+  batteryImg, 
+  googleImg
+} from '../components/imgImports';
 const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
