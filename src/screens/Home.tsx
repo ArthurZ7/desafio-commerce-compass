@@ -67,7 +67,11 @@ const Home: React.FC = () => {
             <div className={styles.menu}>
                 <img src={burgerMenuImg} alt="burguerMenuImg" style={{ width: 'auto', height: 'auto' }} />
                 <img src={logoImg} alt="logo" />
-                <img src={avatarImg} alt="avatar"/>
+                {userName ? (
+                    <img src={auth.currentUser?.photoURL || avatarImg} alt="avatar" />
+                ) : (
+                    <img src={avatarImg} alt="avatar" />
+                )}
             </div>
             <div className={styles.top}>
                 <p>Hi, {userName}</p>
