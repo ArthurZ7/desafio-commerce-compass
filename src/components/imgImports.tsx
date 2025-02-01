@@ -9,3 +9,4 @@ export { default as caboImg } from '../img/cabo.png';
 export { default as googleImg } from '../img/google-icon.png';
 export { default as carrinhoImg } from '../img/carrinho.png';
 export { default as arrowImg } from '../img/arrow.png';
+export { default as starImg } from '../img/star.png';

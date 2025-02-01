@@ -41,7 +41,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 30px 0;
+    margin: 15px 0;
     padding: 0 20px;
     
     img {
@@ -72,10 +72,10 @@
         font-size: 16px;
         background-image: url('../img/search.png');
         background-repeat: no-repeat;
-        background-size: 30px;
+        background-size: 22px;
         background-position: 2%;
         padding-left: 50px;
-        margin: 30px 0 0 0;
+        margin-top: 5px;
     }
 }
 
@@ -88,7 +88,7 @@
     background-color: #F6F6F6;
     margin-top: 20px;
     border-radius: 30px;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 .tabMenu {
@@ -140,7 +140,7 @@
 }
 
 .banner h2 {
-    font-size: 28px;
+    font-size: 26px;
     margin: 12px 0 18px 0;
 }
 
@@ -154,7 +154,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px 0;
     padding: 0 20px;
 }
 
