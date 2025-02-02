@@ -8,7 +8,6 @@ import {
   batteryImg, 
   googleImg
 } from '../../components/imgImports';
-
 const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

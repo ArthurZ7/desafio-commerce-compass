@@ -74,7 +74,7 @@ input {
     margin: 20px auto;
     height: 42vh;
     width: 99%;
-    overflow-y: scroll;
+    overflow-y: scroll; // Adicionado para permitir scroll
 }
 
 $primary-color: white;

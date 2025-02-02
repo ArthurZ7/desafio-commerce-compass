@@ -13,7 +13,7 @@ import { Product } from '../../components/Product.tsx';
 
 const API_URL = 'https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933';
 
-const Home: React.FC = () => {
+const Search: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [products, setProducts] = useState<Product[]>([]);
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className={styles.menu}>
-                <img src={arrowImg} alt="Seta" />
+                <img src={arrowImg} alt="Seta" onClick={() => window.location.href = '/home'}/>
                 <h1>Search</h1>
                 <img src={carrinhoImg} alt="Carrinho"/>
             </div>
@@ -100,8 +100,8 @@ const Home: React.FC = () => {
                             <p className={styles.productPrice}>USD {product.price}</p>
                             <div className={styles.rating}>
                                 <span className={styles.star}><img src={starImg} alt="estrela" /></span>
-                                <span className={styles.ratingValue}>
-                                    {product.reviews && product.reviews.length > 0 ? product.reviews[0].rating : 'No rating'}
+                                <span className={styles.reviewCount}>
+                                    {product.reviews ? `${product.reviews.length} Reviews` : 'No reviews'}
                                 </span>
                             </div>
                         </div>
@@ -111,56 +111,32 @@ const Home: React.FC = () => {
 
             {/* Produtos populares */}
             <div className={styles.popularProducts}>
-            <h2>Popular Products</h2>
-                <div className={styles.productCard}>
-                    <div className={styles.productImage}>
-                        <img src={headphoneImg} alt="TMA-2 Comfort Wireless" />
-                    </div>
-                    <div className={styles.productInfo}>
-                        <h3 className={styles.productName}>TMA-2 Comfort Wireless</h3>
-                        <p className={styles.productPrice}>USD 270</p>
-                        <div className={styles.rating}>
-                            <span className={styles.star}><img src={starImg} alt="estrela" /></span>
-                            <span className={styles.ratingValue}>4.6</span>
-                            <span className={styles.reviewCount}>3 Reviews</span>
+                <h2>Popular Products</h2>
+                {products.slice(0, 3).map((product) => (
+                    <div key={product.id} className={styles.productCard}>
+                        <div className={styles.productImage}>
+                            <img src={product.img} alt={product.name} />
                         </div>
-                    </div>
-                    <div className={styles.menu}>⋮</div>
-                </div>
-                <div className={styles.productCard}>
-                    <div className={styles.productImage}>
-                        <img src={headphoneImg} alt="TMA-2 Comfort Wireless" />
-                    </div>
-                    <div className={styles.productInfo}>
-                        <h3 className={styles.productName}>TMA-2 Comfort Wireless</h3>
-                        <p className={styles.productPrice}>USD 270</p>
-                        <div className={styles.rating}>
-                            <span className={styles.star}><img src={starImg} alt="estrela" /></span>
-                            <span className={styles.ratingValue}>4.6</span>
-                            <span className={styles.reviewCount}>3 Reviews</span>
+                        <div className={styles.productInfo}>
+                            <h3 className={styles.productName}>{product.name}</h3>
+                            <p className={styles.productPrice}>USD {product.price}</p>
+                            <div className={styles.rating}>
+                                <span className={styles.star}><img src={starImg} alt="estrela" /></span>
+                                <span className={styles.ratingValue}>
+                                    {product.reviews && product.reviews.length > 0 ? product.reviews[0].rating : 'No rating'}
+                                </span>
+                                <span className={styles.reviewCount}>
+                                    {product.reviews ? `${product.reviews.length} Reviews` : 'No reviews'}
+                                </span>
+                            </div>
                         </div>
+                        <div className={styles.menu}>⋮</div>
                     </div>
-                    <div className={styles.menu}>⋮</div>
-                </div>
-                <div className={styles.productCard}>
-                    <div className={styles.productImage}>
-                        <img src={headphoneImg} alt="TMA-2 Comfort Wireless" />
-                    </div>
-                    <div className={styles.productInfo}>
-                        <h3 className={styles.productName}>TMA-2 Comfort Wireless</h3>
-                        <p className={styles.productPrice}>USD 270</p>
-                        <div className={styles.rating}>
-                            <span className={styles.star}><img src={starImg} alt="estrela" /></span>
-                            <span className={styles.ratingValue}>4.6</span>
-                            <span className={styles.reviewCount}>3 Reviews</span>
-                        </div>
-                    </div>
-                    <div className={styles.menu}>⋮</div>
-                </div>
+                ))}
             </div>
 
         </div>
     );
 };
 
-export default Home;
+export default Search;

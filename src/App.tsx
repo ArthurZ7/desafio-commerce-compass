@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './screens/sign/Login';
-import Cadastro from './screens/sign/Cadastro';
-import Home from './screens/home/Home';
-import Search from './screens/search/Search';
+import Login from './pages/sign/Login';
+import Cadastro from './pages/sign/Cadastro';
+import Home from './pages/home/Home';
+import AllProducts from './pages/allProducts/allProducts';
+import Search from './pages/search/Search';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/allProducts" element={<AllProducts />} />
         <Route path="/search" element={<Search />} />
       </Routes>
     </Router>

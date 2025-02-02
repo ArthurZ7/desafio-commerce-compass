@@ -12,16 +12,12 @@ import {
     headphoneImg, 
     caboImg 
 } from '../../components/imgImports.tsx';
-import { Product } from '../../components/Product.tsx';
 import { auth } from '../../firebaseConfig.tsx';
 import { onAuthStateChanged } from 'firebase/auth';
-
-const API_URL = 'https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933';
+import useFetchProducts from '../../hooks/useFetchProducts.tsx';
 
 const Home: React.FC = () => {
-    const [data, setData] = useState<Product[]>([]);
-    const [filteredData, setFilteredData] = useState<Product[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>("headphones");
+    const { filteredData, selectedCategory, handleFilter, loading, error } = useFetchProducts("headphones");
     const [userName, setUserName] = useState<string | null>(null);
 
     // Função para verificar se o usuário está logado
@@ -37,22 +33,13 @@ const Home: React.FC = () => {
         return () => unsubscribe();
     }, []);
 
-    // Função para buscar os produtos
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(API_URL);
-            const data = await response.json();
-            setData(data);
-            const initialFilteredData = data.filter((item: Product) => item.category === "headphones");
-            setFilteredData(initialFilteredData);
-        };
-        fetchData();
-    }, []);
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
-    const handleFilter = (category: string) => {
-        setSelectedCategory(category);
-        setFilteredData(data.filter((item) => item.category === category));
-    };
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <div className={styles.container}>
@@ -68,7 +55,7 @@ const Home: React.FC = () => {
                 <img src={burgerMenuImg} alt="burguerMenuImg" style={{ width: 'auto', height: 'auto' }} />
                 <img src={logoImg} alt="logo" />
                 {userName ? (
-                    <img src={auth.currentUser?.photoURL || avatarImg} alt="avatar" />
+                    <img src={auth.currentUser?.photoURL || avatarImg} alt="avatar" onError={(e) => e.currentTarget.src = avatarImg} />
                 ) : (
                     <img src={avatarImg} alt="avatar" />
                 )}
@@ -86,17 +73,17 @@ const Home: React.FC = () => {
             
             <div className={styles.products}>
                 <div className={styles.tabMenu}>
-                <input
-                    type="button"
-                    value="HeadPhone"
-                    className={selectedCategory === 'headphones' ? styles.active : ''}
-                    onClick={() => handleFilter("headphones")}
+                    <input
+                        type="button"
+                        value="HeadPhone"
+                        className={selectedCategory === 'headphones' ? styles.active : ''}
+                        onClick={() => handleFilter("headphones")}
                     />
                     <input
-                    type="button"
-                    value="HeadSet"
-                    className={selectedCategory === 'headsets' ? styles.active : ''}
-                    onClick={() => handleFilter("headsets")}
+                        type="button"
+                        value="HeadSet"
+                        className={selectedCategory === 'headsets' ? styles.active : ''}
+                        onClick={() => handleFilter("headsets")}
                     />
                 </div>
 
@@ -141,27 +128,27 @@ const Home: React.FC = () => {
                 
                 {/* Featured Products */}
                 <div className={styles.featuredProducts}>
-                        <h3>Featured Products</h3>
-                        <a href="#">See All</a>
-                    </div>
+                    <h3>Featured Products</h3>
+                    <a onClick={() => window.location.href = '/allProducts'}>See All</a>
+                </div>
 
-                    <Carousel 
-                        removeArrowOnDeviceType={["tablet", "mobile"]}
-                        partialVisible={true}
-                        focusOnSelect={true}
-                        responsive={{
-                            tablet: {
-                                breakpoint: { max: 1024, min: 464 },
-                                items: 2,
-                                partialVisibilityGutter: 30  
-                            },
-                            mobile: {
-                                breakpoint: { max: 464, min: 0 },
-                                items: 2,
-                                partialVisibilityGutter: 1
-                            }
-                        }}
-                    >
+                <Carousel 
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
+                    partialVisible={true}
+                    focusOnSelect={true}
+                    responsive={{
+                        tablet: {
+                            breakpoint: { max: 1024, min: 464 },
+                            items: 2,
+                            partialVisibilityGutter: 30  
+                        },
+                        mobile: {
+                            breakpoint: { max: 464, min: 0 },
+                            items: 2,
+                            partialVisibilityGutter: 1
+                        }
+                    }}
+                >
                     <div className={styles.productCard}>
                         <img src={headphoneImg} alt="Headphone" />
                         <div>
@@ -171,7 +158,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <div className={styles.productCard}>
-                    <img src={caboImg} alt="Cabo" />
+                        <img src={caboImg} alt="Cabo" />
                         <div>
                             <p>CO2 - Cable</p>
                             <span>USD 25</span>
@@ -185,11 +172,10 @@ const Home: React.FC = () => {
                     </div>
 
                     <div className={styles.productCard}>
-                    <img src={caboImg} alt="Cabo" />
+                        <img src={caboImg} alt="Cabo" />
                         <p>CO2 - Cable</p>
                         <span>USD 25</span>
                     </div>
- 
                 </Carousel>
             </div>
         </div>
