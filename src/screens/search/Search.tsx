@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from 'react';
-import styles from '../css/search.module.scss';
+import styles from './search.module.scss';
 import { 
     redeImg, 
     wifiImg, 
@@ -8,8 +8,8 @@ import {
     carrinhoImg,
     headphoneImg,
     starImg,
-} from '../components/imgImports';
-import { Product } from '../components/Product.tsx';
+} from '../../components/imgImports.tsx';
+import { Product } from '../../components/Product.tsx';
 
 const API_URL = 'https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933';
 

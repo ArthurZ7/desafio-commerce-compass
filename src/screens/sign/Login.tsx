@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { cadastro, loginWithGoogle } from '../components/validaLogin';
-import styles from '../css/sign.module.scss';
+import { login, loginWithGoogle } from '../../components/validaLogin';
+import styles from './sign.module.scss';
 import { 
   redeImg, 
   wifiImg, 
   batteryImg, 
   googleImg
-} from '../components/imgImports';
-const Cadastro = () => {
+} from '../../components/imgImports';
+
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Função dedicada ao cadastro
-  const handleSignUp = async () => {
-    const result = await cadastro(email, password);
+  const handleLogin = async () => {
+    const result = await login(email, password);
     
     if (result.success) {
       alert(result.message);
-      navigate('/'); 
+      navigate('/home'); 
     } else {
-      alert(result.message);
+      alert(result.message); 
     }
   };
 
-  // Função de login com Google
   const handleGoogleLogin = async () => {
     const result = await loginWithGoogle();
     
@@ -52,7 +51,7 @@ const Cadastro = () => {
         <p>Create your account to get started</p>
 
         <div className={styles.inputGroup}>
-          <input
+          <input className='input-email'
             type="email"
             placeholder="Email"
             value={email}
@@ -61,29 +60,36 @@ const Cadastro = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <input
+          <input className='input-senha'
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className={styles.forgotPassword}>
+          <a href="#">Forgot Password</a>
+        </div>
         
-        <button className={styles.loginBtn} onClick={handleSignUp}>
-          Sign Up
+        <button className={styles.loginBtn} onClick={handleLogin}>
+          Sign In
         </button>
+
 
         <div className={styles.googleBtn} onClick={handleGoogleLogin} style={{ cursor: "pointer" }}>
           <img src={googleImg} alt="Google Logo" />
           Sign in with Google
         </div>
 
-        <p className={styles.signup}>
-          Already have an account? <a href="/">Sign In here</a>
-        </p>
+
+        <div className={styles.signup}>
+          <p> Didn’t have any account? 
+            <a href='/cadastro'> Sign Up here</a>
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Cadastro;
+export default Login;

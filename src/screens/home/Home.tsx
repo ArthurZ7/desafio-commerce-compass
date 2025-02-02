@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import styles from '../css/home.module.scss';
+import styles from './home.module.scss';
 import { 
     redeImg, 
     wifiImg, 
@@ -11,9 +11,9 @@ import {
     logoImg, 
     headphoneImg, 
     caboImg 
-} from '../components/imgImports';
-import { Product } from '../components/Product.tsx';
-import { auth } from '../firebaseConfig';
+} from '../../components/imgImports.tsx';
+import { Product } from '../../components/Product.tsx';
+import { auth } from '../../firebaseConfig.tsx';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const API_URL = 'https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933';
@@ -40,7 +40,7 @@ const Home: React.FC = () => {
     // Função para buscar os produtos
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("API_URL");
+            const response = await fetch(API_URL);
             const data = await response.json();
             setData(data);
             const initialFilteredData = data.filter((item: Product) => item.category === "headphones");
