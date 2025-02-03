@@ -10,8 +10,8 @@ import {
 // Hooks
 import useFetchProducts from '../../hooks/useFetchProducts.tsx';
 // Componentes
-import { Product } from '../../components/Product.tsx';
 import Header from '../../components/Header.tsx';
+import { Product } from '../../components/Product.tsx';
 
 const Search: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');

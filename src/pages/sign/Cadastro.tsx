@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Funções de login
 import { cadastro, loginWithGoogle } from '../../components/validaLogin';
+// Estilos
 import styles from './sign.module.scss';
 import { 
   redeImg, 

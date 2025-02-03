@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Funções de login
 import { login, loginWithGoogle } from '../../components/validaLogin';
+// Estilos
 import styles from './sign.module.scss';
 import { 
   redeImg, 
@@ -15,8 +17,10 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    // Função para lidar com o login
     const result = await login(email, password);
     
+    // Verifica se o login foi bem sucedido
     if (result.success) {
       alert(result.message);
       navigate('/home'); 
@@ -28,6 +32,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     const result = await loginWithGoogle();
     
+    // Verifica se o login foi bem sucedido
     if (result.success) {
       alert(result.message);
       navigate('/home');
