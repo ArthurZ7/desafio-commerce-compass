@@ -1,17 +1,17 @@
 # Desafio E-Commerce Compass UOL
 
 ## Prints do Projeto
-### Página de Login e Página Inicial
-<div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/login.png" alt="Página de Login" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/home.png" alt="Página Inicial" style="width: 45%; margin: 2.5%;" />
-</div>
+### Página Inicial
+![Página Inicial](./img/home.png)
 
-### Página de Busca e Página Produtos
-<div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 45%; margin: 2.5%;" />
-</div>
+### Página de Login
+![Página de Login](./img/login.png)
+
+### Página de Busca
+![Página de Busca](./img/searchPrint.png)
+
+### Página Produtos
+![Página de Produtos](./img/products.png)
 
 ## Descrição
 Este projeto é um desafio de e-commerce desenvolvido com React e TypeScript. Ele utiliza Firebase para autenticação e Firestore para armazenamento de dados. O projeto inclui várias páginas, como Home, Login, Cadastro e Search, e utiliza SCSS para estilização.
