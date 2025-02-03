@@ -10,6 +10,21 @@ Este projeto é um desafio de e-commerce desenvolvido com React e TypeScript. El
 - SCSS
 - Vite
 
+## Layout
+#### Figma: <https://www.figma.com/design/SasjEWI0wiQKBBzwyGE3eH/Desafio-Compass-Commerce---Arthur?node-id=4-1&t=VviUKr8QR7sSSY7n-1>
+
+### Página de Login e Página Inicial
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="./src/img/login.png" alt="Página de Login" style="width: 45%; margin: 2.5%;" />
+    <img src="./src/img/home.png" alt="Página Inicial" style="width: 45%; margin: 2.5%;" />
+</div>
+
+### Página de Busca e Página Produtos
+<div style="display: flex; flex-wrap: wrap;">
+    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 45%; margin: 2.5%;" />
+    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 45%; margin: 2.5%;" />
+</div>
+
 ## Instalação
 Para instalar as dependências do projeto, execute o seguinte comando:
 ```
@@ -32,18 +47,3 @@ npm run dev
   - `App.tsx`: Componente principal do aplicativo.
   - `main.tsx`: Ponto de entrada do aplicativo.
 
-## Layout
-### Figma: <https://www.figma.com/design/SasjEWI0wiQKBBzwyGE3eH/Desafio-Compass-Commerce---Arthur?node-id=4-1&t=VviUKr8QR7sSSY7n-1>
-
-## Prints do Projeto
-### Página de Login e Página Inicial
-<div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/login.png" alt="Página de Login" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/home.png" alt="Página Inicial" style="width: 45%; margin: 2.5%;" />
-</div>
-
-### Página de Busca e Página Produtos
-<div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 45%; margin: 2.5%;" />
-</div>
