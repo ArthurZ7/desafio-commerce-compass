@@ -5,13 +5,13 @@
 ![Página Inicial](./src/img/home.png)
 
 ### Página de Login
-![Página de Login](./img/login.png)
+![Página de Login](./src/img/login.png)
 
 ### Página de Busca
-![Página de Busca](./img/searchPrint.png)
+![Página de Busca](./src/img/searchPrint.png)
 
 ### Página Produtos
-![Página de Produtos](./img/products.png)
+![Página de Produtos](./src/img/products.png)
 
 ## Descrição
 Este projeto é um desafio de e-commerce desenvolvido com React e TypeScript. Ele utiliza Firebase para autenticação e Firestore para armazenamento de dados. O projeto inclui várias páginas, como Home, Login, Cadastro e Search, e utiliza SCSS para estilização.
