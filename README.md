@@ -15,14 +15,14 @@ Este projeto é um desafio de e-commerce desenvolvido com React e TypeScript. El
 
 ### Página de Login e Página Inicial
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/login.png" alt="Página de Login" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/home.png" alt="Página Inicial" style="width: 45%; margin: 2.5%;" />
+    <img src="./src/img/login.png" alt="Página de Login" style="width: 25%; margin: 2.5%;" />
+    <img src="./src/img/home.png" alt="Página Inicial" style="width: 25%; margin: 2.5%;" />
 </div>
 
 ### Página de Busca e Página Produtos
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 45%; margin: 2.5%;" />
-    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 45%; margin: 2.5%;" />
+    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 25%; margin: 2.5%;" />
+    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 25%; margin: 2.5%;" />
 </div>
 
 ## Instalação
