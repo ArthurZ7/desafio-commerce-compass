@@ -13,12 +13,12 @@ Este projeto é um desafio de e-commerce desenvolvido com React e TypeScript. El
 ## Layout
 #### Figma: <https://www.figma.com/design/SasjEWI0wiQKBBzwyGE3eH/Desafio-Compass-Commerce---Arthur?node-id=4-1&t=VviUKr8QR7sSSY7n-1>
 
-### Páginas
+### Prints das Páginas
 <div style="display: flex; flex-wrap: wrap;">
-    <img src="./src/img/login.png" alt="Página de Login" style="width: 20%; margin: 2.5%;" />
-    <img src="./src/img/home.png" alt="Página Inicial" style="width: 20%; margin: 2.5%;" />
-    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 20%; margin: 2.5%;" />
-    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 20%; margin: 2.5%;" />
+    <img src="./src/img/login.png" alt="Página de Login" style="width: 24%; margin: 2.5%;" />
+    <img src="./src/img/home.png" alt="Página Inicial" style="width: 24%; margin: 2.5%;" />
+    <img src="./src/img/searchPrint.png" alt="Página de Busca" style="width: 24%; margin: 2.5%;" />
+    <img src="./src/img/products.png" alt="Página de Produtos" style="width: 24%; margin: 2.5%;" />
 </div>
 
 ## Instalação
