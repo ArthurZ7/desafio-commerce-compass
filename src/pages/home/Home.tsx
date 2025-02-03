@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+// Estilos
 import styles from './home.module.scss';
+// Imagens
 import { 
-    redeImg, 
-    wifiImg, 
-    batteryImg, 
     burgerMenuImg, 
     avatarImg, 
     logoImg, 
     headphoneImg, 
     caboImg 
 } from '../../components/imgImports.tsx';
+// Header component
+import Header from '../../components/Header.tsx';
+// Firebase
 import { auth } from '../../firebaseConfig.tsx';
 import { onAuthStateChanged } from 'firebase/auth';
+// Hook para buscar produtos
 import useFetchProducts from '../../hooks/useFetchProducts.tsx';
 
 const Home: React.FC = () => {
@@ -43,14 +46,7 @@ const Home: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <h1>9:41</h1>
-                <div className={styles.iconsTop}>
-                    <img src={redeImg} alt="Rede" />
-                    <img src={wifiImg} alt="WiFi" />
-                    <img src={batteryImg} alt="Battery" />
-                </div>
-            </div>
+            <Header />
             <div className={styles.menu}>
                 <img src={burgerMenuImg} alt="burguerMenuImg" style={{ width: 'auto', height: 'auto' }} />
                 <img src={logoImg} alt="logo" />

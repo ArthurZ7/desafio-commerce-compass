@@ -1,48 +1,22 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState } from 'react';
+// Estilos
 import styles from './search.module.scss';
+// Imagens
 import { 
-    redeImg, 
-    wifiImg, 
-    batteryImg,
     arrowImg, 
     carrinhoImg,
-    headphoneImg,
     starImg,
 } from '../../components/imgImports.tsx';
+// Hooks
+import useFetchProducts from '../../hooks/useFetchProducts.tsx';
+// Componentes
 import { Product } from '../../components/Product.tsx';
-
-const API_URL = 'https://run.mocky.io/v3/c7325af3-16e3-4706-894e-e4a053ab9933';
+import Header from '../../components/Header.tsx';
 
 const Search: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [products, setProducts] = useState<Product[]>([]);
+    const { data: products, loading, error } = useFetchProducts('headphones');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    // Buscar produtos da API quando o componente carregar
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch(API_URL);
-                if (!response.ok) {
-                    throw new Error("Erro ao carregar os produtos.");
-                }
-                const data = await response.json();
-                setProducts(data);
-            } catch (err) {
-                if (err instanceof Error) {
-                    setError(err.message);
-                } else {
-                    setError("An unknown error occurred.");
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
 
     // Função para lidar com a pesquisa
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,25 +35,24 @@ const Search: React.FC = () => {
         setFilteredProducts(filtered);
     };
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
-                <h1>9:41</h1>
-                <div className={styles.iconsTop}>
-                    <img src={redeImg} alt="Rede" />
-                    <img src={wifiImg} alt="WiFi" />
-                    <img src={batteryImg} alt="Battery" />
-                </div>
-            </div>
-
+            <Header />
             <div className={styles.menu}>
                 <img src={arrowImg} alt="Seta" onClick={() => window.location.href = '/home'}/>
                 <h1>Search</h1>
                 <img src={carrinhoImg} alt="Carrinho"/>
             </div>
             
-
-            {/* Campo de pesquisa*/}
+            {/* Campo de pesquisa */}
             <input 
                 type="text" 
                 className={styles.searchIcon}
@@ -134,7 +107,6 @@ const Search: React.FC = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 };
