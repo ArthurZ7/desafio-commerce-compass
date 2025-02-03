@@ -2,7 +2,7 @@
 
 ## Prints do Projeto
 ### Página Inicial
-![Página Inicial](./img/home.png)
+![Página Inicial](./src/img/home.png)
 
 ### Página de Login
 ![Página de Login](./img/login.png)
